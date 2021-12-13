@@ -12,7 +12,7 @@ battlebutton = Image.open("battle-button.jpeg")
 herobutton = Image.open("hero-selection.jpeg")
 towerbutton = Image.open("tower-selection.jpeg")
 ecoimage = Image.open("eco.jpeg")
-nametagimage = Image.open("nametag.jpeg")
+sidelineimage = Image.open("sideline.jpeg")
 
 while True:
 
@@ -25,17 +25,17 @@ while True:
 
         if eco_ready.getbbox() is None:
 
-            # Check Nametag to see which side
-            nametag_screenshot = pyautogui.screenshot(region=(1800, 200, 100, 100))
-            nametag_screenshot.save('nametag-screenshot.jpeg')
-            nametag_screenshot = Image.open("nametag-screenshot.jpeg")
-            compare_nametag = ImageChops.difference(nametag_screenshot, nametagimage)
+            # Check Sideline to see which side
+            sideline_screenshot = pyautogui.screenshot(region=(1800, 200, 100, 100))
+            sideline_screenshot.save('sideline-screenshot.jpeg')
+            sideline_screenshot = Image.open("sideline-screenshot.jpeg")
+            compare_sideline = ImageChops.difference(sideline_screenshot, sidelineimage)
 
             # Calculate offset and tower positions
-            offset = 0 if compare_nametag.getbbox() is None else 960
+            offset = 0 if compare_sideline.getbbox() is None else 960
             tower_slot_x = 80 if offset == 0 else 1840
 
-            print(compare_nametag.getbbox())
+            print(compare_sideline.getbbox())
 
             print("Eco Ready \nOffset: " + str(offset))
             time.sleep(3)
