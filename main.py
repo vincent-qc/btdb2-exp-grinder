@@ -1,116 +1,110 @@
+from os import truncate
 import pyautogui
 import time
 from PIL import Image
-from PIL import ImageChops
+
 
 time.sleep(1)
 
+game_counter = 0
 game_started = False
-exp_earned = 0
-
-battlebutton = Image.open("battle-button.jpeg")
-herobutton = Image.open("hero-selection.jpeg")
-towerbutton = Image.open("tower-selection.jpeg")
-ecoimage = Image.open("eco.jpeg")
-sidelineimage = Image.open("sideline.jpeg")
+starting_xp = 0
 
 while True:
 
-    if game_started:
-
-        # Take screenshots of the UI to see if the game is ready
-        eco_screenshot = pyautogui.screenshot(region=(900, 0, 120, 40))
-        eco_screenshot.save('eco-screenshot.jpeg')
-        eco_ready = ImageChops.difference(Image.open("eco-screenshot.jpeg"), ecoimage)
-
-        if eco_ready.getbbox() is None:
-
+    if game_started == True:
+        #Take screenshots of the UI to see if the game is ready
+        print("waiting for game...")
+        in_game = pyautogui.pixel(x=956, y=63)
+        if in_game == (121, 210, 38):
+            print("game started!")
             # Check Sideline to see which side
-            sideline_screenshot = pyautogui.screenshot(region=(1800, 200, 100, 100))
-            sideline_screenshot.save('sideline-screenshot.jpeg')
-            sideline_screenshot = Image.open("sideline-screenshot.jpeg")
-            compare_sideline = ImageChops.difference(sideline_screenshot, sidelineimage)
+            is_on_the_right = pyautogui.pixel(x=133, y=162)
 
             # Calculate offset and tower positions
-            offset = 0 if compare_sideline.getbbox() is None else 960
-            tower_slot_x = 80 if offset == 0 else 1840
+            offset = 0 if is_on_the_right == (32, 135, 201) else 800
+            print(offset)
+            tower_slot_x = 130 if offset == 0 else 1765
 
-            print(compare_sideline.getbbox())
+            if offset == 0: print("playing on LEFT side")
+            else: print("playing on RIGHT side")
 
-            print("Eco Ready \nOffset: " + str(offset))
             time.sleep(3)
 
-            for x in range(200, 800, 80):
-                pyautogui.moveTo(tower_slot_x, 230)
-                for y in range (100, 700, 200):
-                    pyautogui.dragTo(x + offset, y, 0.14, button='left')
+            for z in range (2):
+                for x in range(250, 851, 100):
+                    time.sleep(1)
+                    pyautogui.moveTo(tower_slot_x, 230)
+                    for y in range (400, 901, 100):
+                        pyautogui.dragTo(x + offset, y, 0.4, button='left')
+                time.sleep(12)
+
+            time.sleep(3)
+
+            # for x in range(3):
+            #     time.sleep(10)
+            #     keyboard.press_and_release('SPACE')
 
             game_started = False
-
-            pyautogui.click(960, 1040)
-            time.sleep(1)
-            pyautogui.click(1480 if offset == 960 else 650, 640)
-
+            #918,611
+            while pyautogui.pixel(309, 153) != (255, 255, 255):
+                time.sleep(1)
+            
+            # pyautogui.click(952, 1000) surrender
+            # time.sleep(1)
+            # pyautogui.click(1432 if offset == 960 else 700, 640)
             time.sleep(5)
-
-            for x in range(50):
-                pyautogui.click(1640, 900)
+            
+            for i in range(120):
+                pyautogui.click(x=1670, y=880)
                 time.sleep(0.1)
 
-            exp_earned += 300
-
+            game_counter += 1
+            starting_xp += 330
             print("----------------------")
-            print("Exp Earned: " + str(exp_earned) + "\n")
-            print("----------------------\n")
+            print("Game number " + str(game_counter) + " is  done!")
+            print("your tower xp is: " + str(starting_xp))
+            print("----------------------")
 
         else:
-            pyautogui.click(300, 300)
+            pyautogui.click(304, 96)
             time.sleep(4)
 
-            
-    else:
-        menu_screenshot = pyautogui.screenshot(region=(960, 810, 240, 120))
-        menu_screenshot.save('menu-screenshot.jpeg')
 
-        hero_screenshot = pyautogui.screenshot(region=(830, 900, 260, 120))
-        hero_screenshot.save('hero-screenshot.jpeg')
-
-        tower_screenshot = pyautogui.screenshot(region=(1400, 830, 200, 110))
-        tower_screenshot.save('tower-screenshot.jpeg')
+    else: #get in a game
         
+        time.sleep(3)
+        pyautogui.click(x=1080, y=870)
 
-        on_menu = ImageChops.difference(Image.open("menu-screenshot.jpeg"), battlebutton)
-        on_hero_selection = ImageChops.difference(Image.open("hero-screenshot.jpeg"), herobutton)
-        on_tower_selection = ImageChops.difference(Image.open("tower-screenshot.jpeg"), towerbutton)
-
-        if on_menu.getbbox() is None:
-            pyautogui.click(x=960, y=810)
-            print("Seraching for Game...")
-            time.sleep(4)
-
-        elif on_hero_selection.getbbox() is None:
-            pyautogui.click(x=830, y=900)
-            print("Selected Hero")
-
+        time.sleep(2)
+        tower_button_color = pyautogui.pixel(x=612, y=708)
+        if tower_button_color == (57, 174, 228):
+            pyautogui.click(x=1487, y=889)
+            game_started = True
             time.sleep(1)
 
-        elif on_tower_selection.getbbox() is None:
-            pyautogui.click(x=1400, y=830)
-            game_started = True
-            print("Ready For Game")
+        pyautogui.click(317, 93)
+
+        # menu_button_color = pyautogui.pixel(x=936, y=874)
+        # menu_button_color2 = pyautogui.pixel(x=969, y=879)
+        # if menu_button_color == (255, 201, 0) and menu_button_color2 == (0, 0, 0):
+        #     pyautogui.click(x=1080, y=870)
+        #     print("Seraching for Game...")
+        #     time.sleep(1)
+
+        # hero_button_color = pyautogui.pixel(x=949, y=432)
+        # if hero_button_color == (3, 176, 254):
+        #     pyautogui.click(x=951, y=977)
+        #     print("Selected Hero")
+        #     time.sleep(1)
+
+        # tower_button_color = pyautogui.pixel(x=926, y=81)
+        # if tower_button_color == (172, 0, 0):
+        #     pyautogui.click(x=1487, y=889)
+        #     game_started = True
+        #     print("Ready For Game")
+        #     time.sleep(1)
         
-        else:
-            pyautogui.click(1640, 900)
-            time.sleep(0.3)
-            pyautogui.click(x=1400, y=700)
-            time.sleep(0.3)
-            pyautogui.click(x=100, y=460)
-
-        time.sleep(3)
-
-
-screenshot_initial = pyautogui.screenshot(region=(960, 810, 240, 120))
-screenshot_initial.save('screenshotinit.jpeg')
 
 
 # Hero Ready
