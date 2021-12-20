@@ -3,21 +3,26 @@ import pyautogui
 import time
 from PIL import Image
 
-# To see X and Y coords and pixel color of your mouse enable the following line:
+# To see the mouse X and Y coords enable the following line and run the script:
 # pyautogui.mouseInfo()
+
+# IMPORTANT
+# all coords are taken with the game in window mode.
+# this is because the program is having problems with detecting pixels in full screen mode so press F11 in your game before running.
+
 
 time.sleep(1)
 
-game_counter = 0 #counts the amount of games played
-game_started = False #checks if the game has started
-starting_xp = 0 #amount of xp gained each game
+game_counter = 0 # counts the amount of games played
+game_started = False # checks if the game has started
+starting_xp = 0 # amount of xp gained each game
 
 while True:
 
     if game_started == True:
         print("waiting for game...")
-        in_game = pyautogui.pixel(x=956, y=63)
 
+        in_game = pyautogui.pixel(x=956, y=63) # checks a pixel to see if you entered the game
         if in_game == (121, 210, 38):
 
             is_on_the_right = pyautogui.pixel(x=133, y=162) # checks if playing on right or left side
