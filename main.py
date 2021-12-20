@@ -3,35 +3,33 @@ import pyautogui
 import time
 from PIL import Image
 
+# To see X and Y coords and pixel color of your mouse enable the following line:
+# pyautogui.mouseInfo()
 
 time.sleep(1)
 
-game_counter = 0
-game_started = False
-starting_xp = 0
+game_counter = 0 #counts the amount of games played
+game_started = False #checks if the game has started
+starting_xp = 0 #amount of xp gained each game
 
 while True:
 
     if game_started == True:
-        #Take screenshots of the UI to see if the game is ready
         print("waiting for game...")
         in_game = pyautogui.pixel(x=956, y=63)
-        if in_game == (121, 210, 38):
-            print("game started!")
-            # Check Sideline to see which side
-            is_on_the_right = pyautogui.pixel(x=133, y=162)
 
-            # Calculate offset and tower positions
-            offset = 0 if is_on_the_right == (32, 135, 201) else 800
-            print(offset)
-            tower_slot_x = 130 if offset == 0 else 1765
+        if in_game == (121, 210, 38):
+
+            is_on_the_right = pyautogui.pixel(x=133, y=162) # checks if playing on right or left side
+            offset = 0 if is_on_the_right == (32, 135, 201) else 800 # Calculate offset
+            tower_slot_x = 130 if offset == 0 else 1765 # calculates first tower slot
 
             if offset == 0: print("playing on LEFT side")
             else: print("playing on RIGHT side")
 
             time.sleep(3)
 
-            for z in range (2):
+            for z in range (2): # placment system (this is temporary and will be changed soon to a better system)
                 for x in range(250, 851, 100):
                     time.sleep(1)
                     pyautogui.moveTo(tower_slot_x, 230)
@@ -41,21 +39,14 @@ while True:
 
             time.sleep(3)
 
-            # for x in range(3):
-            #     time.sleep(10)
-            #     keyboard.press_and_release('SPACE')
+            game_started = False #restarts game loop for a new game
 
-            game_started = False
-            #918,611
-            while pyautogui.pixel(309, 153) != (255, 255, 255):
+            while pyautogui.pixel(309, 153) != (255, 255, 255): # waits until it detects the defeated screen
                 time.sleep(1)
-            
-            # pyautogui.click(952, 1000) surrender
-            # time.sleep(1)
-            # pyautogui.click(1432 if offset == 960 else 700, 640)
+
             time.sleep(5)
             
-            for i in range(120):
+            for i in range(120): # clicks on the ok button to return to main menu
                 pyautogui.click(x=1670, y=880)
                 time.sleep(0.1)
 
@@ -71,56 +62,16 @@ while True:
             time.sleep(4)
 
 
-    else: #get in a game
+    else: # get in a game
         
         time.sleep(3)
-        pyautogui.click(x=1080, y=870)
+        pyautogui.click(x=1080, y=870) # click on battle button and ready button in the main menu and hero screen
 
         time.sleep(2)
-        tower_button_color = pyautogui.pixel(x=612, y=708)
+        tower_button_color = pyautogui.pixel(x=612, y=708) # check if you are on the tower selection screen
         if tower_button_color == (57, 174, 228):
             pyautogui.click(x=1487, y=889)
-            game_started = True
+            game_started = True # set game started to true
             time.sleep(1)
 
-        pyautogui.click(317, 93)
-
-        # menu_button_color = pyautogui.pixel(x=936, y=874)
-        # menu_button_color2 = pyautogui.pixel(x=969, y=879)
-        # if menu_button_color == (255, 201, 0) and menu_button_color2 == (0, 0, 0):
-        #     pyautogui.click(x=1080, y=870)
-        #     print("Seraching for Game...")
-        #     time.sleep(1)
-
-        # hero_button_color = pyautogui.pixel(x=949, y=432)
-        # if hero_button_color == (3, 176, 254):
-        #     pyautogui.click(x=951, y=977)
-        #     print("Selected Hero")
-        #     time.sleep(1)
-
-        # tower_button_color = pyautogui.pixel(x=926, y=81)
-        # if tower_button_color == (172, 0, 0):
-        #     pyautogui.click(x=1487, y=889)
-        #     game_started = True
-        #     print("Ready For Game")
-        #     time.sleep(1)
-        
-
-
-# Hero Ready
-# region=(830, 900, 260, 120)
-
-# Tower Ready
-# (1400, 830, 200, 110)
-
-# Name Tag
-# (1800, 200, 100, 100)
-
-# Ok Button
-# (1630, 864, 80, 80)
-
-# Tower Slot
-# (x=80, y=230) or (x=1900, y=230)
-
-# Window Bounds
-# (x=200, y=200) to (x=880, y=960)
+        pyautogui.click(317, 93) # click on back button(if you got new chests to discard)
