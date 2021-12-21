@@ -1,9 +1,8 @@
-from os import truncate
 import pyautogui
 import time
 from PIL import Image
-from parser import Parser
-
+from PIL import ImageChops
+import parser
 
 time.sleep(1)
 
@@ -11,7 +10,9 @@ game_counter = 0
 game_started = False
 starting_xp = 0
 
-parser = Parser()
+#p = parser.Parser()
+
+# TODO: the code is currently very buggy
 
 while True:
     if game_started:
@@ -40,27 +41,34 @@ while True:
 
             time.sleep(3)
 
-            for z in range (3):
-
-                # TODO: Get map name
-                for pos in parser.get_positions('MAP', 'right' if is_on_the_right else 'left'):
-                    pyautogui.moveTo(tower_slot_x, 230)
-                    pyautogui.dragTo(pos[0] + offset, pos[1], 1, button='left')
-                    time.sleep(0.3)
-
-                        
-                time.sleep(10)
+            # for z in range (3):
+            #
+            #    # TODO: Get map name
+            #    for pos in p.get_positions('MAP', 'right' if is_on_the_right else 'left'):
+            #        pyautogui.moveTo(tower_slot_x, 230)
+            #        pyautogui.dragTo(pos[0] + offset, pos[1], 1, button='left')
+            #        time.sleep(0.3)
+            #
+            #    time.sleep(10)
 
             is_round_11 = False
 
             while pyautogui.pixel(x=1670, y=190) != (255, 255, 255):
                 if is_round_11:
-                    # SEND PURPLE RUSH + BOOST
-                    print("is round 11") #TODO: remove this print statement later
+                    print("Round 11 - Attempting to rush with purples")
+                    pyautogui.click(x = 35 if is_on_the_right else 1825, y=490)
+                    time.sleep(0.4)
+
+                    for _ in range(50):
+                        pyautogui.click(x = 35 if is_on_the_right else 1825, y=490)
+                        time.sleep(0.1)
 
                 else:
-                    print("not round 11") #TODO: remove this print statement later
-                    # is_round_11 = COMPARE ROUND SCREENSHOTS
+                    round_screenshot = pyautogui.screenshot(region=(1020, 10, 180, 32))
+                    round_reference = Image.open('data/round-reference.jpeg')
+
+                    # Compare screenshots to see if it is round 11
+                    is_round_11 = ImageChops.difference(round_screenshot, round_reference).getbbox() is None
 
                 time.sleep(1)
 

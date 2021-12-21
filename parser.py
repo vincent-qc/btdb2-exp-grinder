@@ -22,7 +22,3 @@ class Parser:
 
         return arr
 
-
-p = Parser()
-
-print(p.get_positions('docks', 'left'))
