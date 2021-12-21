@@ -1,7 +1,8 @@
 import pyautogui
-import time
-from PIL import Image
-from PIL import ImageChops
 
-eco_screenshot = pyautogui.screenshot(region=(1800, 200, 100, 100))
-eco_screenshot.save('nametag.jpeg')
+
+menu_screenshot = pyautogui.screenshot(region=(1020, 10, 180, 32))
+menu_screenshot.save('data/round-screenshot.jpeg')
+
+pyautogui.click(x=1080, y=870)
+pyautogui.mouseInfo()
