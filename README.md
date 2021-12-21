@@ -1,14 +1,31 @@
 Bloons TD Battles 2 EXP Grinder
 ===============================
 
-Auto grind btdb2 exp for towers
+THIS PAGE IS UNDER DEVELOPMENT
 
-## Setup
+## About
 
-**I suggest checking out every screenshot to see what they are supposed to be, so you can screenshot the correct areas**
+NOTICE: This is a project currently under development<br>
 
-You need to change the coords of screenshots by commenting and running `setup.py`
+Due to the grindy nature of exp in btdb2, we decided to create a bot that will help you win and earn exp for btdb2
 
-After changing the coords, you also need to change the respective coords in `main.py`
+## Installation
 
-You also need to run `pip install requirements.txt`
+**Pre-requisites**
+- [Python 3.9](https://www.python.org/downloads/release/python-399/)
+
+**Windows**
+- TODO
+
+**MacOS**
+- TODO
+
+run `python main.py`
+
+## Contributing (TODO)
+
+## Credits
+
+**Contributors**
+- [Crabo-7498](https://github.com/Crabo-7498)
+- [SirGru001](https://github.com/SirGru001)
