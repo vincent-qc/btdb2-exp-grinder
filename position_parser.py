@@ -5,7 +5,7 @@ class Parser:
     cached_positions = {}
 
     def __init__(self):
-        with open('data/docks.json') as f:
+        with open('data/maps.json') as f:
             self.data = json.load(f)
 
     def get_positions(self, map, side):

@@ -3,7 +3,7 @@ import pyautogui
 import time
 from PIL import Image
 from PIL import ImageChops
-import parser
+from position_parser import Parser
 
 time.sleep(3)
 
@@ -11,7 +11,7 @@ game_counter = 0
 game_started = False
 starting_xp = 0
 
-#p = parser.Parser()
+p = Parser()
 
 # TODO: the code is currently very buggy
 
@@ -43,39 +43,42 @@ while True:
 
 
         is_right_side = None
-        while pyautogui.pixelMatchesColor(960, 200, (147, 80, 28)):
+        while pyautogui.locateOnScreen('data/images/surrender-button.png', confidence = 0.8) != None:
 
             if is_right_side == None:
-                is_right_side = pyautogui.pixelMatchesColor(1830, 220, (134, 70, 26))
+                is_right_side = pyautogui.locateCenterOnScreen('data/images/locked-bloon.png', confidence = 0.8)[0] > 960
+                print(is_right_side)
                 offset = 0 if is_right_side else 800
                 tower_slot_x = 130 if is_right_side else 1790
                 print("Playing on the " + ("right" if is_right_side else "left") + " side")
                 time.sleep(1)
 
+            # TODO: add positions to maps.json
             #for pos in p.get_positions('MAP', 'right' if is_on_the_right else 'left'):
             #    pyautogui.moveTo(tower_slot_x, 230)
             #    pyautogui.dragTo(pos[0] + offset, pos[1], 1, button='left')
             #    time.sleep(0.3)
+
             purple_bloon_coords = pyautogui.locateOnScreen('data/images/purple-bloons.png', confidence = 0.6)
-            blue_bloon_coords = pyautogui.locateOnScreen('data/images/blue-bloons.png', confidence = 0.6)
+            blue_bloon_coords = pyautogui.locateOnScreen('data/images/blue-bloons.png', confidence = 0.8)
             
             if purple_bloon_coords != None:
 
                 print("Round 11 - Attempting to rush with purples")
 
                 # Activate Bloon boost
-                bloon_boost_coords = pyautogui.locateOnScreen('data/images/bloon-boost.png')
+                bloon_boost_coords = pyautogui.locateOnScreen('data/images/bloon-boost.png', confidence = 0.8)
                 pyautogui.click(bloon_boost_coords)
                 time.sleep(0.4)
 
                 # Click the purple bloons
-                for _ in range(50):
+                for _ in range(100):
                     pyautogui.click(purple_bloon_coords)
-                    time.sleep(0.15)
+                    time.sleep(0.05)
             else:
                 for _ in range(8):
                     pyautogui.click(blue_bloon_coords)
                     time.sleep(0.15)
 
 
-            time.sleep(1)
+            time.sleep(2)
