@@ -57,11 +57,11 @@ while True:
 
         is_right_side = None
 
-        while pyautogui.locateOnScreen('data/images/ingame/surrender-button.png', confidence = 0.8) != None:
+        while pyautogui.locateOnScreen('data/images/ingame/surrender-button.png', confidence = 0.7) != None:
 
             if is_right_side == None:
                 print(is_right_side)
-                is_right_side = pyautogui.locateCenterOnScreen('data/images/ingame/locked-bloon.png', confidence = 0.7)[0] > 960
+                is_right_side = pyautogui.locateCenterOnScreen('data/images/ingame/locked-bloon.png', confidence = 0.5)[0] > 960
                 print(is_right_side)
                 offset = 0 if is_right_side else 800
                 tower_slot_x = 1790 if is_right_side else 130
