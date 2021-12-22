@@ -40,3 +40,5 @@ def get_map():
         wall = pyautogui.locateOnScreen('data/images/maps/wall.png', confidence = 0.8)
         if wall != None:
             return "wall"
+
+        return "Error"

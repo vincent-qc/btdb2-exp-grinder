@@ -1,19 +1,23 @@
 import pyautogui
 import time
 from position_parser import Parser
+#import map_finder
 
 time.sleep(3)
 
 game_counter = 0
+map = None
 
 p = Parser()
 
 while True:
         # The variables and click function are seperated for readability
         
+        battle_button_coords = pyautogui.locateOnScreen('data/images/buttons/battle-button.png', confidence = 0.8)
+        hero_button_coords = pyautogui.locateOnScreen('data/images/buttons/hero-selection-button.png', confidence = 0.8)
+        tower_button_coords = pyautogui.locateOnScreen('data/images/buttons/tower-selection-button.png', confidence = 0.8)
+        
         # Clicks the "Battle" button in the main menu
-        battle_button_coords = pyautogui.locateOnScreen('data/images/buttons/battle-button.png', confidence = 0.6)
-
         if battle_button_coords != None:
             pyautogui.click(battle_button_coords)
             pyautogui.move(100, 100)
@@ -21,17 +25,19 @@ while True:
             time.sleep(2)
 
         # Clicks the "Ready" button in hero selection
-        hero_button_coords = pyautogui.locateOnScreen('data/images/buttons/hero-selection-button.png', confidence = 0.6)
-        if hero_button_coords != None:
+        elif hero_button_coords != None:
             pyautogui.click(hero_button_coords)
             print("Hero selected")
             time.sleep(2)
 
         # Clicks the "Battle" button in tower selection
-        tower_button_coords = pyautogui.locateOnScreen('data/images/buttons/tower-selection-button.png', confidence = 0.6)
-        if tower_button_coords != None:
+        elif tower_button_coords != None:
+            print("finding map")
+            #map = map_finder.get_map()
+
             pyautogui.click(tower_button_coords)
             print("Ready for game!")
+            print("Playing on: " + map)
             time.sleep(2)
 
         discard_chest_coords = pyautogui.locateOnScreen('data/images/buttons/discard-button.png', confidence = 0.6)
@@ -60,11 +66,10 @@ while True:
                 print("Playing on the " + ("right" if is_right_side else "left") + " side")
                 time.sleep(1)
 
-            # TODO: add positions to maps.json
-            #for pos in p.get_positions('MAP', 'right' if is_on_the_right else 'left'):
-            #    pyautogui.moveTo(tower_slot_x, 230)
-            #    pyautogui.dragTo(pos[0] + offset, pos[1], 1, button='left')
-            #    time.sleep(0.3)
+            for pos in p.get_positions(map, 'right' if is_right_side else 'left'):
+                pyautogui.moveTo(tower_slot_x, 230)
+                pyautogui.dragTo(pos[0], pos[1], 1, button='left')
+                time.sleep(0.3)
 
             purple_bloon_coords = pyautogui.locateOnScreen('data/images/ingame/purple-bloons.png', confidence = 0.8)
             blue_bloon_coords = pyautogui.locateOnScreen('data/images/ingame/blue-bloons.png', confidence = 0.8)
@@ -86,7 +91,5 @@ while True:
                 for _ in range(8):
                     pyautogui.click(blue_bloon_coords)
                     time.sleep(0.15)
-
-
 
             time.sleep(2)
