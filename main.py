@@ -53,7 +53,8 @@ while True:
             time.sleep(2)
 
         is_right_side = None
-        while pyautogui.locateOnScreen('data/images/surrender-button.png', confidence = 0.8) != None:
+
+        while pyautogui.locateOnScreen('data/images/surrender-button.png', confidence = 0.9) != None:
 
             if is_right_side == None:
                 print(is_right_side)
