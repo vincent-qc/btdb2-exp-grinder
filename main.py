@@ -8,8 +8,6 @@ from position_parser import Parser
 time.sleep(3)
 
 game_counter = 0
-game_started = False
-starting_xp = 0
 
 p = Parser()
 
@@ -41,11 +39,24 @@ while True:
             print("Ready for game!")
             time.sleep(2)
 
+        discard_chest_coords = pyautogui.locateOnScreen('data/images/discard-button.png', confidence = 0.6)
+        if discard_chest_coords != None:
+            pyautogui.click(discard_chest_coords)
+            print("Discarding chest")
+            time.sleep(2)
+
+        ok_button_coords = pyautogui.locateOnScreen('data/images/ok-button.png', confidence = 0.8)
+        if ok_button_coords != None:
+            pyautogui.click(ok_button_coords)
+            game_counter += 1
+            print("Game Finished")
+            time.sleep(2)
 
         is_right_side = None
         while pyautogui.locateOnScreen('data/images/surrender-button.png', confidence = 0.8) != None:
 
             if is_right_side == None:
+                print(is_right_side)
                 is_right_side = pyautogui.locateCenterOnScreen('data/images/locked-bloon.png', confidence = 0.8)[0] > 960
                 print(is_right_side)
                 offset = 0 if is_right_side else 800
@@ -59,7 +70,7 @@ while True:
             #    pyautogui.dragTo(pos[0] + offset, pos[1], 1, button='left')
             #    time.sleep(0.3)
 
-            purple_bloon_coords = pyautogui.locateOnScreen('data/images/purple-bloons.png', confidence = 0.6)
+            purple_bloon_coords = pyautogui.locateOnScreen('data/images/purple-bloons.png', confidence = 0.8)
             blue_bloon_coords = pyautogui.locateOnScreen('data/images/blue-bloons.png', confidence = 0.8)
             
             if purple_bloon_coords != None:
@@ -79,6 +90,7 @@ while True:
                 for _ in range(8):
                     pyautogui.click(blue_bloon_coords)
                     time.sleep(0.15)
+
 
 
             time.sleep(2)
