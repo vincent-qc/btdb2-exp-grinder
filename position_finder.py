@@ -4,6 +4,8 @@ import time
 
 while True:
     if keyboard.read_key() == "v":
-        print(pyautogui.position())
+        pos = pyautogui.position()
+        
+        print("\"" + str(round(pos[0] / 10) * 10) + " " + str(round(pos[1] / 10) * 10) + "\",")
         time.sleep(0.15)
  
