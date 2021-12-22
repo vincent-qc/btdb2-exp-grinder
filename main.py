@@ -1,8 +1,5 @@
-from cv2 import convertFp16
 import pyautogui
 import time
-from PIL import Image
-from PIL import ImageChops
 from position_parser import Parser
 
 time.sleep(3)
@@ -10,8 +7,6 @@ time.sleep(3)
 game_counter = 0
 
 p = Parser()
-
-# TODO: the code is currently very buggy
 
 while True:
         # The variables and click function are seperated for readability
