@@ -17,7 +17,7 @@ while True:
         # The variables and click function are seperated for readability
         
         # Clicks the "Battle" button in the main menu
-        battle_button_coords = pyautogui.locateOnScreen('data/images/battle-button.png', confidence = 0.6)
+        battle_button_coords = pyautogui.locateOnScreen('data/images/buttons/battle-button.png', confidence = 0.6)
 
         if battle_button_coords != None:
             pyautogui.click(battle_button_coords)
@@ -26,26 +26,26 @@ while True:
             time.sleep(2)
 
         # Clicks the "Ready" button in hero selection
-        hero_button_coords = pyautogui.locateOnScreen('data/images/hero-selection-button.png', confidence = 0.6)
+        hero_button_coords = pyautogui.locateOnScreen('data/images/buttons/hero-selection-button.png', confidence = 0.6)
         if hero_button_coords != None:
             pyautogui.click(hero_button_coords)
             print("Hero selected")
             time.sleep(2)
 
         # Clicks the "Battle" button in tower selection
-        tower_button_coords = pyautogui.locateOnScreen('data/images/tower-selection-button.png', confidence = 0.6)
+        tower_button_coords = pyautogui.locateOnScreen('data/images/buttons/tower-selection-button.png', confidence = 0.6)
         if tower_button_coords != None:
             pyautogui.click(tower_button_coords)
             print("Ready for game!")
             time.sleep(2)
 
-        discard_chest_coords = pyautogui.locateOnScreen('data/images/discard-button.png', confidence = 0.6)
+        discard_chest_coords = pyautogui.locateOnScreen('data/images/buttons/discard-button.png', confidence = 0.6)
         if discard_chest_coords != None:
             pyautogui.click(discard_chest_coords)
             print("Discarding chest")
             time.sleep(2)
 
-        ok_button_coords = pyautogui.locateOnScreen('data/images/ok-button.png', confidence = 0.8)
+        ok_button_coords = pyautogui.locateOnScreen('data/images/buttons/ok-button.png', confidence = 0.8)
         if ok_button_coords != None:
             pyautogui.click(ok_button_coords)
             game_counter += 1
@@ -54,11 +54,11 @@ while True:
 
         is_right_side = None
 
-        while pyautogui.locateOnScreen('data/images/surrender-button.png', confidence = 0.9) != None:
+        while pyautogui.locateOnScreen('data/images/ingame/surrender-button.png', confidence = 0.9) != None:
 
             if is_right_side == None:
                 print(is_right_side)
-                is_right_side = pyautogui.locateCenterOnScreen('data/images/locked-bloon.png', confidence = 0.8)[0] > 960
+                is_right_side = pyautogui.locateCenterOnScreen('data/images/ingame/locked-bloon.png', confidence = 0.8)[0] > 960
                 print(is_right_side)
                 offset = 0 if is_right_side else 800
                 tower_slot_x = 130 if is_right_side else 1790
@@ -71,15 +71,15 @@ while True:
             #    pyautogui.dragTo(pos[0] + offset, pos[1], 1, button='left')
             #    time.sleep(0.3)
 
-            purple_bloon_coords = pyautogui.locateOnScreen('data/images/purple-bloons.png', confidence = 0.8)
-            blue_bloon_coords = pyautogui.locateOnScreen('data/images/blue-bloons.png', confidence = 0.8)
+            purple_bloon_coords = pyautogui.locateOnScreen('data/images/ingame/purple-bloons.png', confidence = 0.8)
+            blue_bloon_coords = pyautogui.locateOnScreen('data/images/ingame/blue-bloons.png', confidence = 0.8)
             
             if purple_bloon_coords != None:
 
                 print("Round 11 - Attempting to rush with purples")
 
                 # Activate Bloon boost
-                bloon_boost_coords = pyautogui.locateOnScreen('data/images/bloon-boost.png', confidence = 0.8)
+                bloon_boost_coords = pyautogui.locateOnScreen('data/images/ingame/bloon-boost.png', confidence = 0.8)
                 pyautogui.click(bloon_boost_coords)
                 time.sleep(0.4)
 
