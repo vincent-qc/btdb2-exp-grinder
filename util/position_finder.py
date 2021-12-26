@@ -8,4 +8,5 @@ while True:
         
         print("\"" + str(round(pos[0] / 10) * 10) + " " + str(round(pos[1] / 10) * 10) + "\",")
         time.sleep(0.15)
+# done: mayan, 
  
