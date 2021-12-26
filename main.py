@@ -4,11 +4,13 @@ import time
 from position_parser import Parser
 import map_finder
 
-time.sleep(3)
+time.sleep(1)
+
+pyautogui.click(x=50, y=10)
 
 game_counter = 0
 map = None
-finding_game = True #CHANGE BACK TO FALSE
+finding_game = False #CHANGE BACK TO FALSE
 
 p = Parser()
 
@@ -22,8 +24,8 @@ while True:
 
         # Clicks the "Battle" button in the main menu
         if battle_button_coords != None and not finding_game:
-            pyautogui.click(battle_button_coords)
-            pyautogui.move(100, 100)
+            print('a')
+            pyautogui.click(battle_button_coords, clicks=2)
             finding_game = True
             print("Finding a game...")
             time.sleep(2)
