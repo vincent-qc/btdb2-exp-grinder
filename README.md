@@ -20,8 +20,6 @@ Due to the grindy nature of exp in btdb2, we decided to create a bot that will h
 **MacOS**
 - TODO
 
-run `python main.py`
-
 ## Contributing (TODO)
 
 ## Credits
