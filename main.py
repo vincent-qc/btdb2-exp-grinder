@@ -1,12 +1,10 @@
-from numpy import true_divide
 import pyautogui
 import time
-from position_parser import Parser
-import map_finder
+from util.position_parser import Parser
+import util.map_finder
 
 time.sleep(1)
-
-pyautogui.click(x=50, y=10)
+print("Program Initiated")
 
 game_counter = 0
 map = None
@@ -15,8 +13,8 @@ finding_game = False #CHANGE BACK TO FALSE
 p = Parser()
 
 while True:
+ 
         # The variables and click function are seperated for readability
-        
         battle_button_coords = pyautogui.locateOnScreen('data/images/buttons/battle-button.png', confidence = 0.6)
         hero_button_coords = pyautogui.locateOnScreen('data/images/buttons/hero-selection-button.png', confidence = 0.6)
         tower_button_coords = pyautogui.locateOnScreen('data/images/buttons/battle-button.png', confidence = 0.6)
@@ -37,14 +35,14 @@ while True:
             time.sleep(2)
 
         # Clicks the "Battle" button in tower selection
-        elif tower_screen_detect != None:
-            map = map_finder.get_map()
+        elif tower_screen_detect != None and finding_game:
+            map = util.map_finder.get_map()
 
             pyautogui.click(tower_button_coords)
             finding_game = False
             print("Ready for game!")
             print("Playing on: " + map)
-            time.sleep(2)
+            time.sleep(6)
 
         back_button_coords = pyautogui.locateOnScreen('data/images/buttons/back-button.png', confidence = 0.6)
         if back_button_coords != None:
@@ -56,7 +54,7 @@ while True:
         if ok_button_coords != None:
             pyautogui.click(ok_button_coords)
             game_counter += 1
-            print("Game Finished")
+            print("Game Finished - Played a total of " + str(game_counter) + " games")
             time.sleep(2)
 
         is_right_side = None
@@ -65,13 +63,11 @@ while True:
 
             if is_right_side == None:
 
-                print(is_right_side)
                 while pyautogui.locateOnScreen('data/images/ingame/locked-bloon.png', confidence = 0.7) == None:
                     time.sleep(1)
 
                 is_right_side = pyautogui.locateCenterOnScreen('data/images/ingame/locked-bloon.png', confidence = 0.5)[0] > 960
 
-                print(is_right_side)
                 offset = 0 if is_right_side else 800
                 tower_slot_x = 1790 if is_right_side else 130
                 print("Playing on the " + ("right" if is_right_side else "left") + " side")
