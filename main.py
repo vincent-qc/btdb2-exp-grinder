@@ -1,14 +1,13 @@
-from numpy import true_divide
 import pyautogui
 import time
 from position_parser import Parser
 import map_finder
 
-time.sleep(3)
+time.sleep(1)
 
 game_counter = 0
 map = None
-finding_game = True #CHANGE BACK TO FALSE
+finding_game = False #CHANGE BACK TO FALSE
 
 p = Parser()
 
