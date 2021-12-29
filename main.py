@@ -4,7 +4,6 @@ from util.position_parser import Parser
 import util.map_finder
 
 time.sleep(1)
-
 print("Program Initiated")
 
 game_counter = 0
@@ -14,8 +13,8 @@ finding_game = False #CHANGE BACK TO FALSE
 p = Parser()
 
 while True:
+ 
         # The variables and click function are seperated for readability
-        
         battle_button_coords = pyautogui.locateOnScreen('data/images/buttons/battle-button.png', confidence = 0.6)
         hero_button_coords = pyautogui.locateOnScreen('data/images/buttons/hero-selection-button.png', confidence = 0.6)
         tower_button_coords = pyautogui.locateOnScreen('data/images/buttons/battle-button.png', confidence = 0.6)
@@ -23,8 +22,8 @@ while True:
 
         # Clicks the "Battle" button in the main menu
         if battle_button_coords != None and not finding_game:
-            pyautogui.click(battle_button_coords)
-            pyautogui.move(100, 100)
+            print('a')
+            pyautogui.click(battle_button_coords, clicks=2)
             finding_game = True
             print("Finding a game...")
             time.sleep(2)
