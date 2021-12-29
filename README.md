@@ -15,7 +15,9 @@ Due to the grindy nature of exp in btdb2, we decided to create a bot that will h
 - [Python 3.9](https://www.python.org/downloads/release/python-399/)
 
 **Windows**
-- TODO
+- Make sure to have python 3.9 preinstalled (and make sure its added to $PATH)
+- Run `SETUP.bat`
+- Run `EXEC.bat`
 
 **MacOS**
 - TODO
