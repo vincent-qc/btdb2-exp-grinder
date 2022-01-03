@@ -22,4 +22,4 @@ echo.
 
 pause
 
-python main.py
+py main.py
