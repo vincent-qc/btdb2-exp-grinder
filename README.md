@@ -3,6 +3,8 @@ Bloons TD Battles 2 EXP Grinder
 
 All questions about installation, contribution, etc. should be sent to `crabo_#7498` on Discord
 
+If you do happen to use this software, please give it a star (it would help alot)
+
 ## About
 
 NOTICE: This is a project currently under development<br>
