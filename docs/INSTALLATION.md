@@ -14,7 +14,7 @@ INSTALLATION
 
 4. Continue with installation and wait for it to finish
 5. Return to the main page [here](https://github.com/Crabo-7498/btdb2-exp-grinder)
-6. Download the package as ZIP and unpack it
+6. Download the package as ZIP and unpack it. You may also use GIT CLONE or GITHUB DESKTOP (If you know how to)
 ![alt](images/img0003.png)<br>
 
 7. Open the folder and run `SETUP.bat`. Windows defender might block the program, in which case click `More Info > Run Anyways`
