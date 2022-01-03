@@ -13,6 +13,7 @@ Due to the grindy nature of exp in btdb2, we decided to create a bot that will h
 Consult [The Installation Guide](docs/INSTALLATION.md)
 
 ## Contributing (TODO)
+- When creating a pull request, please compare it to the `dev branch`
 
 ## Credits
 
