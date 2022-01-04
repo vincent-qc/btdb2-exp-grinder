@@ -1,6 +1,6 @@
 import pyautogui
 
-con_value = 0.5 # confidence value
+con_value = 0.4 # confidence value
 
 def get_map():
     basalt = pyautogui.locateOnScreen('data/images/maps/basalt.png', confidence = con_value)

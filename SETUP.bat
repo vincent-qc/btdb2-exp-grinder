@@ -9,6 +9,8 @@ pause
 
 pip freeze
 pip install PyAutoGUI==0.9.53
+pip install Pillow
+pip install opencv-python
 
 echo Installation Complete
 pause
