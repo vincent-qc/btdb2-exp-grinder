@@ -44,7 +44,7 @@ while True:
             print("Playing on: " + map)
             time.sleep(6)
 
-        back_button_coords = pyautogui.locateOnScreen('data/images/buttons/back-button.png', confidence = 0.6)
+        back_button_coords = pyautogui.locateOnScreen('data/images/buttons/back-button.png', confidence = 0.4)
         if back_button_coords != None:
             pyautogui.click(back_button_coords)
             print("Discarding chest")
