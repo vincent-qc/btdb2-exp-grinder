@@ -1,5 +1,6 @@
 import json
 
+# Class to parse map locations from the JSON file
 class Parser:
 
     cached_positions = {}
@@ -8,10 +9,10 @@ class Parser:
         with open('data/maps-window.json') as f:
             self.data = json.load(f)
 
+    # Returns the position from the maps json
     def get_positions(self, map, side):
         if(self.cached_positions.get(f"{map}_{side}")):
             return self.cached_positions[f"{map}_{side}"]
-
 
         arr = []
 
@@ -21,4 +22,3 @@ class Parser:
         self.cached_positions[f"{map}_{side}"] = arr
 
         return arr
-
