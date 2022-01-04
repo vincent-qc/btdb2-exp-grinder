@@ -3,6 +3,8 @@ Bloons TD Battles 2 EXP Grinder
 
 All questions about installation, contribution, etc. should be sent to `crabo_#7498` on Discord
 
+If you do happen to use this software, please give it a star (it would help alot)
+
 ## About
 
 NOTICE: This is a project currently under development<br>
@@ -13,6 +15,7 @@ Due to the grindy nature of exp in btdb2, we decided to create a bot that will h
 Consult [The Installation Guide](docs/INSTALLATION.md)
 
 ## Contributing (TODO)
+- When creating a pull request, please compare it to the `dev branch`
 
 ## Credits
 

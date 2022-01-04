@@ -13,7 +13,6 @@ finding_game = False  # CHANGE BACK TO FALSE
 p = Parser()
 
 while True:
-
     # The variables and click function are seperated for readability
     battle_button_coords = pyautogui.locateOnScreen(
         'data/images/buttons/battle-button.png', confidence=0.6)
@@ -77,6 +76,7 @@ while True:
             while pyautogui.locateOnScreen(
                 'data/images/ingame/locked-bloon.png',
                     confidence=0.7) is None:
+              
                 time.sleep(1)
 
             is_right_side = pyautogui.locateCenterOnScreen(
