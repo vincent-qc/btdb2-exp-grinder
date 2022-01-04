@@ -8,6 +8,8 @@ echo This script relies on python to work, make sure you have python 3.9 install
 pause
 
 py -m pip install --upgrade pip pyautogui
+py -m pip install --upgrade pip pillow
+py -m pip install --upgrade pip opencv-python
 
 echo Installation Complete
 pause
