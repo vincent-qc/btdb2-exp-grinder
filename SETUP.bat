@@ -7,10 +7,9 @@ echo Welcome to the BTDB2 Exp Grinder Setup
 echo This script relies on python to work, make sure you have python 3.9 installed
 pause
 
-pip freeze
-pip install PyAutoGUI==0.9.53
-pip install Pillow
-pip install opencv-python
+py -m pip install --upgrade pip pyautogui
+py -m pip install --upgrade pip pillow
+py -m pip install --upgrade pip opencv-python
 
 echo Installation Complete
 pause
