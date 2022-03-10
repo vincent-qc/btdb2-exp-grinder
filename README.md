@@ -7,7 +7,7 @@ If you do happen to use this software, please give it a star (it would help alot
 
 ## About
 
-NOTICE: This is a project currently under development<br>
+NOTICE: This is a project currently under development. THE CURRENT BUILD IS OUTDATED, AN UPDATE WILL COME SHORTLY<br>
 
 Due to the grindy nature of exp in btdb2, we decided to create a bot that will help you win and earn exp for btdb2
 
